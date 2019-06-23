@@ -8,9 +8,27 @@ output:
   pdf_document: default
 ---
 
+<!-- Had to change the latex_engine from 'pdflatex' to 'xelatex' when using dfSummary. Go to settings > output options >
+advanced > latex engine (https://stackoverflow.com/questions/32794157/package-inputenc-error-unicode-char-u8-in-rstudio) -->
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html
+
+library(knitr)
+opts_chunk$set(results = 'asis',      # This is essential (can also be set at the chunk-level)
+               comment = NA, 
+               prompt = FALSE, 
+               cache = FALSE)
+
+library(summarytools)
+st_options(plain.ascii = FALSE,        # This is very handy in all Rmd documents
+            style = "rmarkdown",       # This too
+            footnote = NA,             # Avoids footnotes which would clutter the results
+            subtitle.emphasis = FALSE  # This is a setting to experiment with - according to
+)                                      # the theme used, it might improve the headings' 
+                                       # layout
 ```
+
 
 ## Data Exploration
 
