@@ -30,4 +30,4 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
    7. Errors vs. Artifacts
 3. Create a data dictionary or codebook
    1. Manually (e.g., in a spreadsheet)
-   2. Attach to your dataset [Example with R link here]
+   2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
