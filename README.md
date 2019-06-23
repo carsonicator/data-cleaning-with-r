@@ -6,9 +6,6 @@ In this exercise we'll present an outline that you can follow to help you with y
 
 Starting with a new, raw, tabular data set, we will follow these steps to learn more about it and clean up where we need to so we analyze it properly:
 
-https://towardsdatascience.com/the-art-of-cleaning-your-data-b713dbd49726
-Data_Science_End_to_End
-
 ## Outline:
 1. Inital Exploration
    1. Data set dimensions (number of rows and columns)
@@ -30,7 +27,7 @@ Data_Science_End_to_End
       2. High correlation with other variable(s)
       3. Various methods discussed here
    6. Repeat visualization
-   7. Create a data dictionary or codebook
-      1. Manually (e.g., in a spreadsheet)
-      2. Attach to your dataset [Example with R link here]
-   8. Errors vs. Artifacts
+   7. Errors vs. Artifacts
+3. Create a data dictionary or codebook
+   1. Manually (e.g., in a spreadsheet)
+   2. Attach to your dataset [Example with R link here]
