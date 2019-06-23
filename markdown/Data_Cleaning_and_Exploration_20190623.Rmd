@@ -37,8 +37,6 @@ Data cleaning, processing, and munging can be a very time consuming processes. Y
 In this exercise we'll present an outline that you can follow to help you with your day-to-day data organization tasks. When working with your own project data, some of these steps may require you to put the data in context and/or have an understanding of the source domain. If you do not have the domain expertise to determine whether data values make sense, or if you have questions about how the data was collected, you need to work with a domain expert.
 
 Starting with a new, raw, tabular data set, we will follow these steps to learn more about it and clean up where we need to so we analyze it properly:
-# https://towardsdatascience.com/the-art-of-cleaning-your-data-b713dbd49726
-# Data_Science_End_to_End
 
 Data Exploration and Cleaning:
 1. Inital Exploration
@@ -382,10 +380,11 @@ save_it(complete_dataset, name_of_file = "./output/companies_with_dict")
 
 # References:
 
-# https://www.statmethods.net/input/missingdata.html
-# http://dataanalyticsedge.com/2018/05/02/data-cleaning-using-r/
-# https://bookdown.org/lyzhang10/lzhang_r_tips_book/preface.html
-# https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html
-# https://dabblingwithdata.wordpress.com/2018/01/02/my-favourite-r-package-for-summarising-data/
-# https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html
+1. https://towardsdatascience.com/the-art-of-cleaning-your-data-b713dbd49726
+2. https://www.statmethods.net/input/missingdata.html
+3. http://dataanalyticsedge.com/2018/05/02/data-cleaning-using-r/
+4. https://bookdown.org/lyzhang10/lzhang_r_tips_book/preface.html
+5. https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html
+6. https://dabblingwithdata.wordpress.com/2018/01/02/my-favourite-r-package-for-summarising-data/
+7. https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html
 
