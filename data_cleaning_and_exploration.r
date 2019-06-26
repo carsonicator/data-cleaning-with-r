@@ -142,11 +142,11 @@ companies$Num_widgets[companies$Num_widgets < 0] <- NA
 # Returns the array index of the first duplicate if any, otherwise 0.
 anyDuplicated(companies)
 
-    # a	Dufus & Dingus Ltd.		500000	1	yes	1/1/14 10:00
+    # a	Dufus & Dingus Ltd.	            	500000	1 	yes	1/1/14 10:00
     # b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
     # b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
     # b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
-    # c	Harry Ham Handlers	gold	123409	67	no	1/1/14 15:05
+    # c	Harry Ham Handlers	  gold	      123409	67	no	1/1/14 15:05
 
 # Logical vector that shows duplicates
 duplicated(companies)
