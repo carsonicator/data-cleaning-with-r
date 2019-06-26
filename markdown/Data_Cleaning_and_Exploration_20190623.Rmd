@@ -69,11 +69,11 @@ Data Exploration and Cleaning:
 
 We'll use a toy data set of companies to start things off. Let's load the data and take a look at it:
 ```{r}
-companies <- read.csv("/Users/mbc400/Box Sync/GitHub/Test_Data_Sets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
+companies <- read.csv("datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Identifies missing data more accurately. Why is this?
 library(readr)
-companies <- read_csv("/Users/mbc400/Box Sync/GitHub/Test_Data_Sets/company_dataset.csv")
+companies <- read_csv("datasets/company_dataset.csv")
 
 # Look at the data frame
 View(companies)
