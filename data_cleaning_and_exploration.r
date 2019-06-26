@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 
+# Run with 'Rscript data_cleaning_and_exploration.r'
+
 ## Data Exploration and Cleaning:
 ##   1. Inital Exploration
 ##     a. Data set dimensions (number of rows and columns)
@@ -10,22 +12,27 @@
 ##       2. Observe outlying values
 ##       3. Observe and understand the shape of the distributions
 ##   2. Fixing errors
-##     a. Identify and deal with missing values
-##     b. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
-##     c. Remove irrelevant columns or rows
-##     d. Standardize values
-##       1. Scaling
-##       2. Normalization
-##     e. Dimensionality reduction: Can you get rid of any columns?
-##       1. High ratio of missing values (based on a determined threshold)
-##       2. High correlation with other variable(s)
-##       3. Various methods discussed here
-##     f. Repeat visualization
-##     g. Create a data dictionary or codebook
-##      1. Manually (e.g., in a spreadsheet)
-##      2. Attach to your dataset [Example with R link here]
-##     h. Errors vs. Artifacts
-
+##     a. Remove irrelevant columns or rows
+##     b. Identify and deal with missing values
+##     c. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
+##     d. Errors vs. Artifacts
+##   3. Standardize values
+##      a. Scaling (changing the range of data)
+##      b. Normalization
+##   4. Dimensionality reduction: Can you get rid of any columns?
+##      a. High ratio of missing values (based on a determined threshold)
+##      b. High correlation with other variable(s)
+##      c. Various methods discussed here
+##   5. Repeat visualization
+##   6. Create a data dictionary or codebook
+##      a. Manually (e.g., in a spreadsheet)
+##      b. Attach to your dataset [Example with R link here]
+##     
+##
+## Data Exploration:
+## 1) Descriptive Stats
+## 2) Exploratory Data Analysis (EDA)
+## 3) Visual presentation
 
 # Load the dataset
 # Identifies missing data more accurately. Why is this?
@@ -34,7 +41,7 @@ companies <- read_csv("/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/datase
 
 
 ##
-## 1) Initial Exploration
+## 1. Initial Exploration
 ##   a. Summary of variables
 ##   b. Data set dimensions (number of rows and columns)
 ##   c. Identify potential problems
@@ -64,9 +71,17 @@ dim(companies)
 hist(companies$Gross_Income_2013)
 boxplot(companies$Num_widgets)
 
-## 2) Fixing Errors
+
+## 2. Fixing Errors
 ##
-##   a. Identify and deal with missing values
+##   a. Remove irrelevant columns or rows
+##
+
+# Add some content here
+
+## 2. Fixing Errors
+##
+##   b. Identify and deal with missing values
 ##
 ##      IMPORTANT NOTE: Verify that all missing values are actually missing. If you notice more missing values
 ##                      than expected, make sure there wasn't a problem at the data import step.
@@ -123,9 +138,9 @@ companies$Num_widgets[is.na(companies$Num_widgets)] <- 0
 # Replace all NA's in a column with the median value of the column
 companies$Num_widgets[is.na(companies$Num_widgets)] <- median(companies$Num_widgets)
 
-## 2) Fixing Errors
+## 2. Fixing Errors
 ##
-##   b) Look for and remove incorrect data
+##   c. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
 ## 
 
 # Recode impossible values to missing
@@ -195,7 +210,7 @@ companies$Complete[companies$Complete == "yess"] <- "yes"
 companies$Complete[companies$Complete == "NOT"] <- "no"
 
 # Removing Extra Spaces
-
+#
 # Eliminate all leading and trailing white space from every value in the data frame
 # sapply returns a matrix, so we have to cast companies_no_ws back as a data frame.
 companies_no_ws <- as.data.frame(sapply(companies, function(x) trimws(x)), stringsAsFactors = FALSE)
@@ -218,3 +233,63 @@ companies$Status <- sapply(companies$Status, tolower)
 
 # check your work
 table(companies$Status, useNA = "ifany")
+
+
+## 2. Fixing Errors
+##
+##   d. Errors vs. Artifacts
+##
+
+# Sometimes during the import, organization, or cleaning stages of a project you inadvertantly introduce
+# artifacts into your data. For example, when you import data in Excel it sometimes chooses the wrong data
+# type for one or more of your columns (assigning a column with eight digit numeric values as type 'date').
+# Keep this in mind so you don't carry these artifacts into your analysis steps.
+
+
+## 3. Standardize values
+##
+##   a. Scaling (changing the range of data)
+##
+
+# https://www.thekerneltrip.com/statistics/when-scale-my-data/
+# Scaling vs. normalization: https://www.quora.com/When-should-you-perform-feature-scaling-and-mean-normalization-on-the-given-data-What-are-the-advantages-of-these-techniques
+
+# If you want to compare columns that are on a different scale, you need to change both sets of values to
+# use a common scale. Algorithms such as SVM and KNN treat a change of '1' in a value with the same importance.
+  
+# https://stackoverflow.com/questions/15215457/standardize-data-columns-in-r
+dat <- data.frame(x = rnorm(10, 30, .2), y = runif(10, 3, 5))
+scaled.dat <- scale(dat)
+
+# check that we get mean of 0 and sd of 1
+colMeans(scaled.dat)  # faster version of apply(scaled.dat, 2, mean)
+apply(scaled.dat, 2, sd)
+
+
+## 3. Standardize values
+##
+##   b. Normalization (changing the shape of the distribution of the data)
+##
+
+# Needed when running algorithms that assume a normal distribution such as t-test, ANOVA, linear regression,
+# LDA, and Gaussian Naive Bayes.
+# We can make a "right-skewed" variable in the following manner:
+# [a] drawing from a (standard)-normal distribution, and then: 
+# [b] exponentiating the results
+
+x <- exp(rnorm(100,0,1))  # Combined [a] and [b]
+
+hist(x)           # Plot the original right-skewed variable;
+hist(log(x))      # plot the logged-version of the variable.
+
+
+
+### e) Check for outliers using visualization
+
+``` {r}
+library(ggplot2)
+
+ggplot(companies, aes(x = Status, fill = Complete)) + geom_bar()
+```
+
+
