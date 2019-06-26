@@ -13,18 +13,18 @@
 ##     a. Identify and deal with missing values
 ##     b. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
 ##     c. Remove irrelevant columns or rows
-##    e. Standardize values
-##      1. Scaling
-##      2. Normalization
-##    f. Dimensionality reduction: Can you get rid of any columns?
-##      1. High ratio of missing values (based on a determined threshold)
-##      2. High correlation with other variable(s)
-##      3. Various methods discussed here
-##    g. Repeat visualization
-##    h. Create a data dictionary or codebook
+##     d. Standardize values
+##       1. Scaling
+##       2. Normalization
+##     e. Dimensionality reduction: Can you get rid of any columns?
+##       1. High ratio of missing values (based on a determined threshold)
+##       2. High correlation with other variable(s)
+##       3. Various methods discussed here
+##     f. Repeat visualization
+##     g. Create a data dictionary or codebook
 ##      1. Manually (e.g., in a spreadsheet)
 ##      2. Attach to your dataset [Example with R link here]
-##    i. Errors vs. Artifacts
+##     h. Errors vs. Artifacts
 
 
 # Load the dataset
@@ -193,3 +193,28 @@ companies$Status[companies$Status == "bornze"] <- "bronze"
 table(companies$Complete, useNA = "ifany")
 companies$Complete[companies$Complete == "yess"] <- "yes"
 companies$Complete[companies$Complete == "NOT"] <- "no"
+
+# Removing Extra Spaces
+
+# Eliminate all leading and trailing white space from every value in the data frame
+# sapply returns a matrix, so we have to cast companies_no_ws back as a data frame.
+companies_no_ws <- as.data.frame(sapply(companies, function(x) trimws(x)), stringsAsFactors = FALSE)
+
+# Works on columns
+# Removes leading and trailing white space from specific columns
+library(stringr)
+companies$Complete <- str_trim(companies$Complete)
+
+# Remove extra spaces within account names
+companies$Account_Name <- gsub("\\s+"," ", companies$Account_Name)
+
+# Fixing case issues with categorical data
+#
+# Look at the different status categories again...
+table(companies$Status, useNA = "ifany")
+
+# ...and change them all to lower case
+companies$Status <- sapply(companies$Status, tolower)
+
+# check your work
+table(companies$Status, useNA = "ifany")
