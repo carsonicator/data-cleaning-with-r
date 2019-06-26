@@ -34,4 +34,4 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
 3. Create a data dictionary or codebook
    1. Manually (e.g., in a spreadsheet)
    2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
-4. Getting our dataset ready for the Tidyverse
+
