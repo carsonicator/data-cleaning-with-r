@@ -24,9 +24,8 @@
 ##      b. High correlation with other variable(s)
 ##      c. Various methods discussed here
 ##   5. Repeat visualization
-##   6. Create a data dictionary or codebook
-##      a. Manually (e.g., in a spreadsheet)
-##      b. Attach to your dataset [Example with R link here]
+##   6. Write a cleaned data frame to a .csv file
+
 ##     
 ##
 ## Data Exploration:
@@ -283,13 +282,16 @@ hist(x)           # Plot the original right-skewed variable;
 hist(log(x))      # plot the logged-version of the variable.
 
 
+##   4. Dimensionality reduction: Can you get rid of any columns?
+##      a. High ratio of missing values (based on a determined threshold)
+##      b. High correlation with other variable(s)
+##      c. Various methods discussed here
 
-### e) Check for outliers using visualization
+## 5. Repeat visualization
 
-``` {r}
 library(ggplot2)
-
 ggplot(companies, aes(x = Status, fill = Complete)) + geom_bar()
-```
 
+## 6. Write a cleaned data frame to a .csv file
+write.csv(companies, "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_cleaned.csv", row.names = FALSE)
 
