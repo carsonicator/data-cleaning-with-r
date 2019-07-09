@@ -2,7 +2,7 @@
 
 # Run with 'Rscript data_cleaning_and_exploration.r'
 
-## Data Exploration and Cleaning:
+## Data Cleaning and Standardization:
 ##   1. Inital Exploration
 ##     a. Data set dimensions (number of rows and columns)
 ##     b. Summary of variables
@@ -25,13 +25,12 @@
 ##      c. Various methods discussed here
 ##   5. Repeat visualization
 ##   6. Write a cleaned data frame to a .csv file
-
-##     
+##   7. Convert your df to a tibble
 ##
 ## Data Exploration:
-## 1) Descriptive Stats
-## 2) Exploratory Data Analysis (EDA)
-## 3) Visual presentation
+##   1. Descriptive Stats
+##   2. Exploratory Data Analysis (EDA)
+##   3. Visual presentation
 
 # Load the dataset
 # Identifies missing data more accurately. Why is this?
@@ -89,7 +88,7 @@ boxplot(companies$Num_widgets)
 # Count the number of missing values
 ###
 
-# Checking for missing values; returns a logical data frame with TRUE if value is missing, FALSE otherwise 
+# Checking for missing values; returns a logical data frame with TRUE if value is missing, FALSE otherwise
 is.na(companies)
 
 # Returns the number of missing values in each column
@@ -121,7 +120,7 @@ companies[!complete.cases(companies),]
 companies_new <- na.omit(companies)
 
 # Replace
-#  
+#
 # Eliminate all missing values from a data frame
 na.omit(companies)
 
@@ -140,13 +139,13 @@ companies$Num_widgets[is.na(companies$Num_widgets)] <- median(companies$Num_widg
 ## 2. Fixing Errors
 ##
 ##   c. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
-## 
+##
 
 # Recode impossible values to missing
 #
 # If you know that a particular range of values for a variable is invalid, you can set those values
 # as missing so as not to throw off your analysis later on:
-  
+
 # Recode negative (impossible) values in the Num_widgets column to NA
 companies$Num_widgets[companies$Num_widgets < 0] <- NA
 
@@ -184,7 +183,7 @@ companies %>% distinct(Account_Name, .keep_all = TRUE)
 
 # For more details you can use a table to find duplicated values in columns that should contain unique
 # values only. Then you can look at the associated full records to see what kind of duplication it is
-# (e.g., full row vs. mistakenly entered Account_Name) 
+# (e.g., full row vs. mistakenly entered Account_Name)
 
 # Lists the values of 'Account_Name' and the number of times they occur
 occurrences <- data.frame(table(companies$Account_Name))
@@ -255,7 +254,7 @@ table(companies$Status, useNA = "ifany")
 
 # If you want to compare columns that are on a different scale, you need to change both sets of values to
 # use a common scale. Algorithms such as SVM and KNN treat a change of '1' in a value with the same importance.
-  
+
 # https://stackoverflow.com/questions/15215457/standardize-data-columns-in-r
 dat <- data.frame(x = rnorm(10, 30, .2), y = runif(10, 3, 5))
 scaled.dat <- scale(dat)
@@ -273,7 +272,7 @@ apply(scaled.dat, 2, sd)
 # Needed when running algorithms that assume a normal distribution such as t-test, ANOVA, linear regression,
 # LDA, and Gaussian Naive Bayes.
 # We can make a "right-skewed" variable in the following manner:
-# [a] drawing from a (standard)-normal distribution, and then: 
+# [a] drawing from a (standard)-normal distribution, and then:
 # [b] exponentiating the results
 
 x <- exp(rnorm(100,0,1))  # Combined [a] and [b]
@@ -295,3 +294,18 @@ ggplot(companies, aes(x = Status, fill = Complete)) + geom_bar()
 ## 6. Write a cleaned data frame to a .csv file
 write.csv(companies, "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_cleaned.csv", row.names = FALSE)
 
+## 7. Convert your data frame to a tibble
+
+# With the 'dplyr' package, you can convert your data from to a tibble
+companies_tbl <- as_tibble(companies_cleaned)
+companies_tbl
+
+# Check out the newly created tibble with 'glimpse'
+glimpse(companies_tbl)
+
+# Convert back to a data frame if you like
+companies_cleaned <- as.data.frame(companies_tbl)
+
+# test
+median_gross <- companies %>%
+  summarize (median_gross = median(Gross_Income_2013))
