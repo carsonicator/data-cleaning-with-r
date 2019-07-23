@@ -31,7 +31,7 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
       3. Various methods discussed here
    6. Repeat visualization
    7. Errors vs. Artifacts
-3. Create a data dictionary or codebook
+3. Create a data dictionary or codebook [R code](https://github.com/carsonicator/data-cleaning-with-r/blob/master/create_data_dictionary.r)
    1. Manually (e.g., in a spreadsheet)
    2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
 
