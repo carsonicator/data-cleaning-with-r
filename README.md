@@ -34,12 +34,17 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
 7. Convert your df to a tibble (optional)
 
 ## Data Dictionary ([R Code](https://github.com/carsonicator/data-cleaning-with-r/blob/master/create_data_dictionary.r))
-3. Create a data dictionary or codebook 
+This is usually a list of variables or data elements along with a description of each one (metadata about your data). You’ll want to include things like file name, column id, column name, variable type, count, notes, and warnings to your collaborators regarding any errors or mismatches. It's also a good idea to include:
+
+1. Identify variable or columns as categorical, discrete numeric, or continuous
+2. Get the overall dimensions of the data set (number of rows and columns)
+3. Find out how many instances of each variable there are (total count)
+
+You can create a data dictionary or codebook...
    1. Manually (e.g., in a spreadsheet)
    2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
 
 ## Data Exploration
-
 1. Descriptive Stats
 2. Exploratory Data Analysis (EDA)
 3. Visual presentation
