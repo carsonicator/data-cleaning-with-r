@@ -21,7 +21,7 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
 2. Fixing errors
    1. Remove irrelevant columns or rows
    2. Identify and deal with missing values
-   3. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces) 
+   3. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
    4. Errors vs. Artifacts
 3. Standardize values
    1. Scaling
@@ -42,12 +42,9 @@ This is usually a list of variables or data elements along with a description of
 
 You can create a data dictionary or codebook...
    1. Manually (e.g., in a spreadsheet)
-   2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
-<<<<<<< HEAD
-=======
+   2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html)
 
 ## Data Exploration
 1. Descriptive Stats
 2. Exploratory Data Analysis (EDA)
 3. Visual presentation
->>>>>>> 27aae55add694aecc2e34244fab1de047c0116a3
