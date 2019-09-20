@@ -9,7 +9,7 @@ In this workshop we'll present an outline that you can follow to help you with y
 
 Starting with a new, raw, tabular data set, we will follow these steps to learn more about it and clean up where we need to so we analyze it properly:
 
-## Outline:
+## Data Cleaning ([R Code](https://github.com/carsonicator/data-cleaning-with-r/blob/master/data_cleaning_and_exploration.r)):
 1. Inital Exploration
    1. Data set dimensions (number of rows and columns)
    2. Summary of variables
@@ -19,18 +19,35 @@ Starting with a new, raw, tabular data set, we will follow these steps to learn 
       2. Observe outlying values
       3. Observe and understand the shape of the distributions
 2. Fixing errors
-   1. Identify and deal with missing values
-   2. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces)
-   3. Remove irrelevant columns or rows
-   4. Standardize values
-      1. Scaling
-      2. Normalization
-   5. Dimensionality reduction: Can you get rid of any columns?
-      1. High ratio of missing values (based on a determined threshold)
-      2. High correlation with other variable(s)
-      3. Various methods discussed here
-   6. Repeat visualization
-   7. Errors vs. Artifacts
-3. Create a data dictionary or codebook
+   1. Remove irrelevant columns or rows
+   2. Identify and deal with missing values
+   3. Look for and remove incorrect data (impossible values, duplicates, typos, and extra spaces) 
+   4. Errors vs. Artifacts
+3. Standardize values
+   1. Scaling
+   2. Normalization
+4. Dimensionality reduction: Can you get rid of any columns?
+   1. High ratio of missing values (based on a determined threshold)
+   2. High correlation with other variable(s)
+5. Repeat visualization
+6. Write a cleaned data frame to a .csv file
+7. Convert your df to a tibble (optional)
+
+## Data Dictionary ([R Code](https://github.com/carsonicator/data-cleaning-with-r/blob/master/create_data_dictionary.r))
+This is usually a list of variables or data elements along with a description of each one (metadata about your data). You’ll want to include things like file name, column id, column name, variable type, count, notes, and warnings to your collaborators regarding any errors or mismatches. It's also a good idea to include:
+
+1. Identify variable or columns as categorical, discrete numeric, or continuous
+2. Get the overall dimensions of the data set (number of rows and columns)
+3. Find out how many instances of each variable there are (total count)
+
+You can create a data dictionary or codebook...
    1. Manually (e.g., in a spreadsheet)
    2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
+<<<<<<< HEAD
+=======
+
+## Data Exploration
+1. Descriptive Stats
+2. Exploratory Data Analysis (EDA)
+3. Visual presentation
+>>>>>>> 27aae55add694aecc2e34244fab1de047c0116a3
