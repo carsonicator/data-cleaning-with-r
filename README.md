@@ -48,4 +48,5 @@ You can create a data dictionary or codebook...
 3. Visual presentation
 
 ### Understanding data requires knowing the domain and the context
-Note that, when working with your own project data, some of these steps may require you to put the data in context and/or have an understanding of the source domain. If you do not have the domain expertise to determine whether data values make sense, or if you have questions about how the data was collected, you may need to work with a domain expert.
+
+So that they are used properly, many of the techniques described above require that you understand the data. This means that you know the **context** in which the data were collected and have the **domain knowledge** to know if it makes sense. When working with data, make sure you understand how it was collected and in what context. If you do not have the domain expertise to determine whether data values make sense you may need to work with a domain expert.
