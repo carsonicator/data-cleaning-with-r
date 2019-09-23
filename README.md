@@ -47,4 +47,5 @@ You can create a data dictionary or codebook...
 2. Exploratory Data Analysis (EDA)
 3. Visual presentation
 
+### Understanding data requires knowing the domain and the context
 Note that, when working with your own project data, some of these steps may require you to put the data in context and/or have an understanding of the source domain. If you do not have the domain expertise to determine whether data values make sense, or if you have questions about how the data was collected, you may need to work with a domain expert.
