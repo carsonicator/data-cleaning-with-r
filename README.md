@@ -49,4 +49,4 @@ You can create a data dictionary or codebook...
 
 ### Understanding data requires knowing the domain and the context
 
-So that they are used properly, many of the techniques described above require that you understand the data. This means that you know the **context** in which the data were collected and have the **domain knowledge** to know if it makes sense. When working with data, make sure you understand how it was collected and in what context. If you do not have the domain expertise to determine whether data values make sense you may need to work with a domain expert.
+So that they are used properly, many of the techniques described above require that you understand the data. This means that you know the **context** in which the data were collected and have the **domain knowledge** to know if the data make sense. Making decisions on, for instance, how to normalize a certain variable in a data set without having a grasp on these two issues can results in data corruption or misrepresentation.
