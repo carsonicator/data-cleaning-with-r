@@ -40,7 +40,7 @@ This is usually a list of variables or data elements along with a description of
 
 You can create a data dictionary or codebook...
    1. Manually (e.g., in a spreadsheet)
-   2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html)
+   2. Attach to your dataset (with the [dataMeta](https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html) package)
 
 ## Data Exploration
 1. Descriptive Stats
