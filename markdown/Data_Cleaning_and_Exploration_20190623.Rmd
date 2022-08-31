@@ -69,11 +69,11 @@ Data Exploration and Cleaning:
 
 We'll use a toy data set of companies to start things off. Let's load the data and take a look at it:
 ```{r}
-#companies <- read.csv("/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
+#companies <- read.csv("datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Identifies missing data more accurately. Why is this?
 library(readr)
-companies <- read_csv("/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/datasets/company_dataset.csv")
+companies <- read_csv("datasets/company_dataset.csv")
 
 # Look at the data frame
 View(companies)
@@ -320,7 +320,7 @@ You can use the R package [dataMeta](https://cran.r-project.org/web/packages/dat
 library(dataMeta)
 
 #erase after testing
-companies <- read.csv("/Users/mbc400/Box Sync/GitHub/Test_Data_Sets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
+companies <- read.csv("datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
 ### Three steps
@@ -370,10 +370,10 @@ complete_dataset$Complete = as_factor(complete_dataset$Complete)
 
 # Export dictionary only:
 dict_only <- attributes(complete_dataset)$dictionary
-write.csv(dict_only, "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_dict_only.csv")
+write.csv(dict_only, "output/companies_dict_only.csv")
 
 # Save as an R dataset, .rds (dataset with appended dictionary)
-save_it(complete_dataset, name_of_file = "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_with_dict")
+save_it(complete_dataset, name_of_file = "output/companies_with_dict")
 
 ```
 
