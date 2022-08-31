@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carsonicator/data-cleaning-with-r/master)
+
 # Data Cleaning and Organization
 
 Data cleaning, processing, and munging can be a very time consuming processes. You can save time by developing a workflow for these tasks. Taking deliberate steps on the front end of your project to properly process your data will...
