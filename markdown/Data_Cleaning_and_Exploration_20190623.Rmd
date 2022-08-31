@@ -3,9 +3,9 @@ title: "Data Cleaning and Organization"
 author: "Matt Carson"
 date: "6/23/2019"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 <!-- Had to change the latex_engine from 'pdflatex' to 'xelatex' when using dfSummary. Go to settings > output options >
@@ -16,8 +16,8 @@ advanced > latex engine (https://stackoverflow.com/questions/32794157/package-in
 
 library(knitr)
 opts_chunk$set(results = 'asis',      # This is essential (can also be set at the chunk-level)
-               comment = NA, 
-               prompt = FALSE, 
+               comment = NA,
+               prompt = FALSE,
                cache = FALSE)
 
 library(summarytools)
@@ -25,7 +25,7 @@ st_options(plain.ascii = FALSE,        # This is very handy in all Rmd documents
             style = "rmarkdown",       # This too
             footnote = NA,             # Avoids footnotes which would clutter the results
             subtitle.emphasis = FALSE  # This is a setting to experiment with - according to
-)                                      # the theme used, it might improve the headings' 
+)                                      # the theme used, it might improve the headings'
                                        # layout
 ```
 
@@ -69,11 +69,11 @@ Data Exploration and Cleaning:
 
 We'll use a toy data set of companies to start things off. Let's load the data and take a look at it:
 ```{r}
-companies <- read.csv("datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
+#companies <- read.csv("/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/datasets/company_dataset.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Identifies missing data more accurately. Why is this?
 library(readr)
-companies <- read_csv("datasets/company_dataset.csv")
+companies <- read_csv("/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/datasets/company_dataset.csv")
 
 # Look at the data frame
 View(companies)
@@ -108,7 +108,7 @@ boxplot(companies$Num_widgets)
 
 ```{r}
 # Checking for missing values; returns a logical data frame with TRUE if value is missing,
-# FALSE otherwise 
+# FALSE otherwise
 is.na(companies)
 
 # Returns the number of missing values in each column
@@ -123,7 +123,7 @@ companies[!complete.cases(companies),]
 ```
 
 ##### Verify that all missing values are actually missing
-  
+
 If you notice more missing values than expected, make sure there wasn't a problem at the data import step.
 
 ##### Decide what to do with missing values
@@ -169,9 +169,9 @@ companies$Num_widgets[is.na(companies$Num_widgets)] <- median(companies$Num_widg
 #### b) Look for and remove incorrect data
 
 (@) *Recode impossible values to missing*
-    
+
 If you know that a particular range of values for a variable is invalid, you can set those values as missing so as not to throw off your analysis later on:
-    
+
 ``` {r}
 # Recode negative (impossible) values in the Num_widgets column to NA
 companies$Num_widgets[companies$Num_widgets < 0] <- NA
@@ -184,11 +184,11 @@ companies$Num_widgets[companies$Num_widgets < 0] <- NA
 # Returns the array index of the first duplicate if any, otherwise 0.
 anyDuplicated(companies)
 
-# a	Dufus & Dingus Ltd.		500000	1	yes	1/1/14 10:00
-# b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
-# b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
-# b	Snooty Pants Fashion	silver     	100000	5	  no	1/1/14 13:24
-# c	Harry Ham Handlers	gold	123409	67	no	1/1/14 15:05
+# a	ABC Ltd.	                  	500000	1    yes 1/1/14 10:00
+# b	Forward Fashion	    silver     	100000	5    no  1/1/14 13:24
+# b	Forward Fashion	    silver     	100000	5    no  1/1/14 13:24
+# b	Forward Fashion	    silver     	100000	5    no  1/1/14 13:24
+# c	Finance Wizard      gold	    123409	67   no  1/1/14 15:05
 
 # Logical vector that shows duplicates
 duplicated(companies)
@@ -206,18 +206,18 @@ unique_companies <- unique(companies)
 # Same using 'tidyverse'
     library(dplyr)
     unique_companies <- companies %>% distinct()
-    
+
     # Remove duplicated rows based on duplication in a specific column
     companies %>% distinct(Account_Name, .keep_all = TRUE)
 
-# For more details you can use a table to find duplicated values in columns that should contain unique values only. Then you can look at the associated full records to see what kind of duplication it is (e.g., full row vs. mistakenly entered Account_Name) 
+# For more details you can use a table to find duplicated values in columns that should contain unique values only. Then you can look at the associated full records to see what kind of duplication it is (e.g., full row vs. mistakenly entered Account_Name)
 
     # Lists the values of 'Account_Name' and the number of times they occur
     occurrences <- data.frame(table(companies$Account_Name))
-    
+
     # tells you which ids occurred more than once.
     occurrences[occurrences$Freq > 1,]
-    
+
     # Returns the records that contain the duplicated 'Account_Name'
     companies[companies$Account_Name %in% occurrences$Var1[occurrences$Freq > 1],]
 ```
@@ -283,11 +283,11 @@ apply(scaled.dat, 2, sd)
 (@) *Normalization (changing the shape of the distribution of the data)
 # Needed when running algorithms that assume a normal distribution such as t-test, ANOVA, linear regression, LDA, and Gaussian Naive Bayes.
 # We can make a "right-skewed" variable in the following manner:
-# [a] drawing from a (standard)-normal distribution, and then: 
+# [a] drawing from a (standard)-normal distribution, and then:
 # [b] exponentiating the results
- 
+
 x <- exp(rnorm(100,0,1))  # Combined [a] and [b]
- 
+
 hist(x)           # Plot the original right-skewed variable;
 hist(log(x))      # plot the logged-version of the variable.
 
@@ -370,10 +370,10 @@ complete_dataset$Complete = as_factor(complete_dataset$Complete)
 
 # Export dictionary only:
 dict_only <- attributes(complete_dataset)$dictionary
-write.csv(dict_only, "./output/companies_dict_only.csv")
+write.csv(dict_only, "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_dict_only.csv")
 
 # Save as an R dataset, .rds (dataset with appended dictionary)
-save_it(complete_dataset, name_of_file = "./output/companies_with_dict")
+save_it(complete_dataset, name_of_file = "/Users/mbc400/Box Sync/GitHub/data-cleaning-with-r/output/companies_with_dict")
 
 ```
 
@@ -387,4 +387,3 @@ save_it(complete_dataset, name_of_file = "./output/companies_with_dict")
 5. https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html
 6. https://dabblingwithdata.wordpress.com/2018/01/02/my-favourite-r-package-for-summarising-data/
 7. https://cran.r-project.org/web/packages/dataMeta/vignettes/dataMeta_Vignette.html
-
